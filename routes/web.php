@@ -20,7 +20,7 @@ Route::put('/usuarios/{user}','UserController@update');
 
 Route::post('/usuarios','UserController@store');
 
-Route::delete('/usuarios/{user}','UserController@destroy');
+Route::delete('/usuarios/{user}','UserController@destroy')->name('users.destroy');
 
 Route::get('/saludo/{name}/{nickname}', 'WelcomeController');
 
