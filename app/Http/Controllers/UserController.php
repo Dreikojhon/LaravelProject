@@ -40,14 +40,21 @@ class UserController extends Controller
     public function store()
     {
 
-        $data = request()->all();
+        $data = request()->validate([
+            'name' => 'required',
+            'email' => ['required','email','unique:users,email'],
+            'password' => 'required',
+            
+        ],[
+            'name.required' =>'Es necesario insertar un nombre'
+        ]);
 
-        if (empty($data['name']))
-        {
-            return redirect('usuarios/nuevo')->withErrors([
-                'name'=>'Es necesario un nombre'
-            ]);
-        }
+        // if (empty($data['name']))
+        // {
+        //     return redirect('usuarios/nuevo')->withErrors([
+        //         'name'=>'Es necesario un nombre'
+        //     ]);
+        // }
 
         User::create([
             'name' => $data['name'],
@@ -55,5 +62,24 @@ class UserController extends Controller
             'password' => bcrypt($data['password'])
         ]);
         return redirect()->route('users.index');
+    }
+
+    public function edit(User $user)
+    {
+        return view('users.edit',['user'=> $user ]);
+    }
+
+    public function update(User $user)
+    {
+        $data = request()->validate([
+            'name' =>'required',
+            'email' =>['required','email'],
+            'password' =>'required',
+        ]);
+
+
+        $data['password']= bcrypt($data['password']);
+        $user->update($data);
+        return redirect()->route('users.show',['user'=>$user]);
     }
 }
