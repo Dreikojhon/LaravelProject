@@ -39,6 +39,7 @@ class UserController extends Controller
 
     public function store()
     {
+
         $data = request()->all();
 
         if (empty($data['name']))
