@@ -18,8 +18,9 @@ Route::get('/usuarios/{user}/editar','UserController@edit')->name('users.edit');
 
 Route::put('/usuarios/{user}','UserController@update');
 
-
 Route::post('/usuarios','UserController@store');
+
+Route::delete('/usuarios/{user}','UserController@destroy');
 
 Route::get('/saludo/{name}/{nickname}', 'WelcomeController');
 
