@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.app')
 @section('title',"Pagina no encontrada")
 
 @section('content')

@@ -9,11 +9,7 @@
         @if ($errors->has('name'))
         <li>{{ $errors->first('name') }}</li>
         @endif
-        {{-- <ul>
-            @foreach($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul> --}}
+        
     </div>
     @endif
 
